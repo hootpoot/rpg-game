@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Seinfeld Brawl</title>
+
+    <!-- Added link to the jQuery Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+
+
+    <link rel="stylesheet" href="assets/css/style.css">
+
+</head>
+
+<body>
+    <!--title-->
+    <h1>Seinfeld Brawl</h1>
+
+    <!--fighter cards-->
+    <div class="buttons">
+        <button id="jerry" class="fighter">
+            <p>JERRY</p>
+            <img src="assets/images/jerry.jpg">
+            <div id="jerryHP"></div>
+        </button>
+        <button id="elaine" class="fighter">
+            <p>ELAINE</p>
+            <img src="assets/images/elaine.jpg">
+            <div id="elaineHP"></div>
+        </button>
+        <button id="george" class="fighter">
+            <p>GEORGE</P>
+            <img src="assets/images/george.jpg">
+            <div id="georgeHP"></div>
+        </button>
+        <button id="kramer" class="fighter">
+            <p>KRAMER</p>
+            <img src="assets/images/kramer.jpg">
+            <div id="kramerHP"></div>
+        </button>
+    </div>
+
+    <h2>Your Fighter</h2>
+    <div id="your-fighter"></div>
+
+    <h2>Enemies Available to Attack</h2>
+    <div id="your-enemies"></div>
+
+    <h2>Fight Section</h2>
+    <div id="fight">
+        <button id="attack-button">ATTACK!</button>
+    </div>
+
+    <h2>Defender</h2>
+    <div id="your-defender"></div>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            var yourFighter = "";
+            var enemies = [];
+            var defender = "";
+            var mode = "selectFighter";
+            var fighters = [$("#jerry"), $("#elaine"), $("#george"), $("#kramer")];
+
+            $(".fighter").on("click", function () {
+
+                if (mode === "selectFighter") {
+                    $(this).appendTo("#your-fighter");
+                    mode = "selectEnemy";
+                    yourFighter = this.id;
+                    $(this).css("background-color", "PaleGreen");
+                    for(var i = 0; i < fighters.length; i++) {
+                        if (fighters[i].attr('id') !== yourFighter) {
+                            $(fighters[i]).appendTo($("#your-enemies"));
+                        }
+                    }
+                }
+
+            })
+
+
+        });
+    </script>
+
+</body>
+
+</html>
