@@ -9,7 +9,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="assets/game.js"></script>
 
 
     <link rel="stylesheet" href="assets/css/style.css">
@@ -18,13 +18,14 @@
 
 <body>
     <!--title-->
-    <h1>Seinfeld Brawl</h1>
+    <img src="assets/images/seinfeld-logo-png-transparent.png">
 
     <!--fighter cards-->
     <div class="buttons">
         <button id="jerry" class="fighter" value="0">
             <p>JERRY</p>
             <img src="assets/images/jerry.jpg">
+
             <div id="jerryHP"></div>
         </button>
         <button id="elaine" class="fighter" value="1">
@@ -40,10 +41,12 @@
         <button id="kramer" class="fighter" value="3">
             <p>KRAMER</p>
             <img src="assets/images/kramer.jpg">
+            <br>
             <div id="kramerHP"></div>
         </button>
     </div>
 
+    <!--divs for placements-->
     <h2>Your Fighter</h2>
     <div id="your-fighter"></div>
 
@@ -52,84 +55,19 @@
 
     <h2>Fight Section</h2>
     <div id="fight">
-        <button id="attack-button">ATTACK!</button>
+        <button id="attack-button" class="attack">ATTACK!</button>
     </div>
 
     <h2>Defender</h2>
     <div id="your-defender"></div>
 
-    <script type="text/javascript">
-        $(document).ready(function () {
+    <div id="play-text"></div>
+    <div id="play-text2"></div>
 
-            //Global variables
-            var yourFighter = "";
-            var yourStats = "";
-            var defenderStats="";
-            var enemies = [];
-            var defender = "";
-            var mode = "selectFighter";
-            var fighters = [$("#jerry"), $("#elaine"), $("#george"), $("#kramer")];
-            var stats = [];
-            //fighterstats
-            var jerryStats = {
-                name: "jerry",
-                hp: 160,
-                ap: 20,
-                cap: 20
-            };
-            var elaineStats = {
-                name: "elaine",
-                hp: 140,
-                ap: 15,
-                cap: 15
-            };
-            var georgeStats = {
-                name: "george",
-                hp: 120,
-                ap: 10,
-                cap: 10
-            };
-            var kramerStats = {
-                name: "kramer",
-                hp: 180,
-                ap: 25,
-                cap: 25
-            };
-            stats.push(jerryStats, elaineStats, georgeStats, kramerStats);
-
-            $("#jerryHP").text(jerryStats.hp);
-            $("#elaineHP").text(elaineStats.hp);
-            $("#georgeHP").text(georgeStats.hp);
-            $("#kramerHP").text(kramerStats.hp);
-
-            $(".fighter").on("click", function () {
-
-                if (mode === "selectFighter") {
-                    $(this).appendTo("#your-fighter");
-                    mode = "selectDefender";
-                    yourFighter = this.id;
-                    yourStats = stats[this.value];
-                    $(this).css("background-color", "PaleGreen");
-                    for(var i = 0; i < fighters.length; i++) {
-                        if (fighters[i].attr('id') !== yourFighter) {
-                            $(fighters[i]).appendTo($("#your-enemies"));
-                            $(fighters[i]).css("background-color", "LightCoral");
-                            
-                        } 
-                    }
-                } else if (mode === "selectDefender") {
-                    if (yourFighter !== this.id) {
-                    $(this).appendTo("#your-defender");
-                    $(this).css("background-color","lightslategrey"); 
-                    defenderStats = stats[this.value];
-                    mode = "attack";
-                    }
-                }
-            })
-
-
-        });
-    </script>
+    <div id="restart">
+        <button id="restart-button" class="restart">Restart</button>
+    </div>
+    
 
 </body>
 
